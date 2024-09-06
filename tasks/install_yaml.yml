@@ -7,7 +7,7 @@
 
 - name: Set yq current version fact
   ansible.builtin.set_fact:
-    yq_current_version: "{{ yq_result.stdout | default('') | replace('yq version ','') }}"
+    yq_current_version: "{{ yq_result.stdout | default('') | replace('yq version ', '') }}"
 
 - name: Get latest stable yq tag
   ansible.builtin.uri:
@@ -18,7 +18,7 @@
 
 - name: Set yq version fact to latest
   ansible.builtin.set_fact:
-    yq_version: "{{ yq_github_result.json.tag_name | default(yq_default_version) | replace('v','') }}"
+    yq_version: "{{ yq_github_result.json.tag_name | default(yq_default_version) | replace('v', '') }}"
   when: yq_version == 'latest'
 
 - name: Set yq version fact to default
@@ -30,6 +30,6 @@
   ansible.builtin.get_url:
     url: "{{ yq_base_url }}/v{{ yq_version }}/yq_linux_amd64"
     dest: "/usr/local/bin/yq"
-    mode: 0755
+    mode: '0755'
     force: true
   when: yq_current_version != yq_version
