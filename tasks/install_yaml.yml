@@ -1,5 +1,5 @@
 ---
-- name: Get yq version # noqa 301
+- name: Get yq version
   ansible.builtin.command: "yq --version"
   register: yq_result
   changed_when: false
@@ -30,6 +30,6 @@
   ansible.builtin.get_url:
     url: "{{ yq_base_url }}/v{{ yq_version }}/yq_linux_amd64"
     dest: "/usr/local/bin/yq"
-    mode: '0755'
+    mode: "0755"
     force: true
   when: yq_current_version != yq_version
