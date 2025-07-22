@@ -7,7 +7,7 @@ yq_install_force: false
 yq_install_origin: internet  # or local
 yq_dl_executor: host  # or localhost
 yq_install_dir: "/usr/local/bin"
-yq_version: "latest"
+yq_version: "4.46.1"  # or latest
 yq_arch: "amd64"
 yq_distrib: "linux"
 yq_pkg_name: "yq_{{ yq_distrib }}_{{ yq_arch }}"
