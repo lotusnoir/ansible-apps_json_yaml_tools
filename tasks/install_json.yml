@@ -1,5 +1,12 @@
 ---
-- name: Install jq
+- name: "Check for binary"
+  ansible.builtin.stat:
+    path: "/usr/bin/jq"
+  changed_when: false
+  register: __installed_jq_bin
+
+- name: "Install jq"
   ansible.builtin.package:
     name: jq
-    state: "{{ jq_version if jq_version == 'latest' else 'present' }}"
+    state: present
+  when: not __installed_jq_bin.stat.exists
